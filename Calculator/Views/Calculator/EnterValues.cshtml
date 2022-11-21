@@ -1,0 +1,219 @@
+﻿@model Calculator.Models.CalculatorModel
+@using Calculator.Models
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/modernizr-2.8.3.js"></script>
+
+</head>
+<body>
+    <div class="bg-container d-flex justify-content-center align-items-center ">
+        <div class="card p-5">
+
+
+            @using (Html.BeginForm("EnterValues", "Calculator", FormMethod.Post, new { @class = "form-group" }))
+            {
+                <div class="py-2">
+                    @Html.Label("a", "Value 1")
+                    @Html.TextBox("a", "", new { @class = "form-control" })
+                </div>
+                <div class="py-2">
+                    @{
+                        List<SelectListItem> listItems = new List<SelectListItem>();
+                        listItems.Add(new SelectListItem
+                        {
+                            Text = "+",
+                            Value = "+"
+                        });
+                        listItems.Add(new SelectListItem
+                        {
+                            Text = "-",
+                            Value = "-",
+                            Selected = true
+                        });
+                        listItems.Add(new SelectListItem
+                        {
+                            Text = "*",
+                            Value = "*"
+                        });
+                        listItems.Add(new SelectListItem
+                        {
+                            Text = "/",
+                            Value = "/"
+                        });
+                        listItems.Add(new SelectListItem
+                        {
+                            Text = "^",
+                            Value = "^"
+                        });
+
+                    }
+                    @Html.DropDownList("c", listItems,
+                    "operation", new { @class = "form-control width-40" })
+
+                </div>
+                <div class="py-2">
+                    @Html.Label("b", "Value 2")
+                    @Html.TextBox("b", "", new { @class = "form-control" })
+                </div>
+                <div class="d-flex align-items-center">
+                    <input type="submit" value="Submit" class="btn btn-primary" />
+                    <span class="result">result:@ViewBag.Sum</span>
+                </div>
+
+                <hr />
+
+                <div>Calculator History:</div>
+                @*if (@Session["calculation"] != null)
+                    {
+                        foreach (var item in @Session["calculation"] as List<string>)
+                        {
+                            <div>@item</div>
+                        }
+                    }
+                    <span>result:</span>*@
+                if (@Session["calculation"] != null)
+                {
+                    foreach (var item in @ViewBag.Getcalc as List<string>)
+                    {
+                        <div>@item</div>
+                    }
+                }
+            }
+        </div>
+    </div>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*<!DOCTYPE html>
+
+    <html>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <title>Create Sample JSON Data and send it to controller</title>
+    </head>
+    <body>
+        <div>
+            <div>
+                @Html.TextBoxFor(m => m.Value1)
+            </div>
+            <div>
+                @Html.TextBoxFor(m => m.Value2)
+            </div>
+            <label>Create Sample User JSON Data and send it to controller</label><br /><br />
+            <input type="button" id="btnUpdateUserDetail" value="Update User Detail" onclick="UpdateUserDetail();" />
+        </div>
+    </body>
+    </html>
+
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script lang="en" type="text/javascript">
+        function Sum() {
+            var usersJson = GetSampleUsersList();
+            var getReportColumnsParams = {
+                "usersJson": usersJson
+            };
+            $.ajax({
+                type: "POST",
+                traditional: true,
+                async: false,
+                cache: false,
+                url: '/CalculatorController.aspx/Sum',
+                context: document.body,
+                data: getReportColumnsParams,
+                success: function (result) {
+                    alert(result);
+                },
+                error: function (xhr) {
+                    //debugger;
+                    console.log(xhr.responseText);
+                    alert("Error has occurred..");
+                }
+            });
+        }
+
+    </script>*@
+
+
+
+
+
+@*@{
+        ViewBag.Title = "Index";
+    }
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/jquery-1.10.2.intellisense.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $.getJSON("/Home/BookingStatus", function (data) {
+                var tr;
+                $.each(data, function (d, i) {
+                    tr = $('<tr/>');
+                    tr.append("<td>" + i.RoomId + "</td>");
+                    tr.append("<td>" + i.RooType + "</td>");
+                    tr.append("<td>" + i.BookingStatus + "</td>");
+                    $('#tblBookingStatus').append(tr);
+                });
+            });
+        });
+    </script>
+    <div class="form-horizontal">
+
+        <hr />
+        <div class="form-group">
+            <table id="tblBookingStatus" class="table table-responsive" style="width:400px">
+                <tr>
+                    <th>
+                        Room Id
+                    </th>
+                    <th>
+                        Room Type
+                    </th>
+                    <th>
+                        Booking Status
+                    </th>
+                </tr>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>*@

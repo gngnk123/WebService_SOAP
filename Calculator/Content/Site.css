@@ -1,0 +1,28 @@
+﻿
+html, body {
+    margin: 0;
+    height: 100%;
+}
+
+
+
+.bg-container {
+    width: 100%;
+    height: 100%;
+    background-image: url('bg.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.card {
+    width: 350px;
+}
+
+.width-40 {
+    width: 40px !important;
+}
+
+.result {
+    margin-left: 15px;
+}
